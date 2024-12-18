@@ -1,0 +1,15 @@
+# Configuration de la base de données
+db.host=localhost
+db.port=3306
+db.name=gestion_ecole
+db.user=root
+db.password=your_password_here
+
+# Configuration de l'application
+app.name=Gestion École
+app.version=1.0
+app.language=fr
+
+# Configuration des exports
+export.path=exports/
+export.default_format=pdf
