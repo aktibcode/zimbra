@@ -1,8 +1,30 @@
-ZIMBA
-dbIMP
-dbIMP2
-imp 
-lib 
-.settings
+# Compiled class files
+*.class
+
+# Build folders
+bin/
+target/
+
+# Log files
+*.log
+
+# Eclipse specific files
+.settings/
 .classpath
 .project
+
+# Database and sensitive data
+dbIMP/
+dbIMP2/
+
+# Local configuration
+*.properties
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Others
+ZIMBA/
+imp/
