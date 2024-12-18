@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="liste_enseignant" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8ec79553-7b6b-40f9-ab72-bbff7d79796d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="pEnse" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT heritier.enseignantel.idMEns,
+	heritier.enseignantel.nomEns,
+	heritier.enseignantel.clsEns,
+	heritier.enseignantel.cours,
+	heritier.enseignantel.idEns,
+	heritier.user.cat_user
+FROM heritier.enseignantel, heritier.user
+where heritier.enseignantel.clsEns =  $P{pEnse} 
+and heritier.enseignantel.idEns = heritier.user.id_user
+order by heritier.enseignantel.nomEns]]>
+	</queryString>
+	<field name="idMEns" class="java.lang.Integer"/>
+	<field name="nomEns" class="java.lang.String"/>
+	<field name="cours" class="java.lang.String"/>
+	<field name="idEns" class="java.lang.String"/>
+	<field name="cat_user" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="239" y="1" width="76" height="59" uuid="9b7cc56d-7e00-4373-b521-d3efe49c5494"/>
+				<imageExpression><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="16" y="13" width="187" height="29" uuid="15417fc0-3b04-4802-b140-2aa50fac7fbf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Délégation Proviciale de l'Education Nationale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="32" width="216" height="22" uuid="38ccfa25-a1d5-4510-8da8-a1bfe1f4aa7d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Inspection Départementale de l'Education]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="0" width="216" height="20" uuid="afb02e2a-4e86-4b4c-a45d-93c4f7bac395"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Republique du Tchad  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="46" width="216" height="33" uuid="eee72f93-6cc5-4815-a7cd-21a18ec68fd2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nationale et de la Promotion civique du Mandoul]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="53" width="131" height="22" uuid="756e197a-6d29-409a-a65b-4899af2367d8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Tel : 66475539 / 60304302]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="32" width="131" height="22" uuid="6247b0e9-61b2-4854-846d-9d5bb47e5d2f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isItalic="true"/>
+				</textElement>
+				<text><![CDATA[BP :____]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="22" width="237" height="19" uuid="06718615-54de-451c-8347-aba6349592b5">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNITE - TRAVAIL - PROGRES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="281" y="3" width="270" height="19" uuid="09c298e3-3b84-468d-953b-2bfca6c5d60e">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPUBLIQUE DU TCHAD]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="140" y="0" width="276" height="30" uuid="c2e51bf7-6fe6-4f34-8953-d17baac2aa1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="20" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[LISTE DES ENSEIGNANTS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="394" y="0" width="100" height="30" uuid="f49fd3e0-e7ef-476e-9c78-11b4b1010c57"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pEnse}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="59" y="0" width="138" height="30" backcolor="#E8E6E6" uuid="e01a1ea1-9627-478a-b00d-17c84597aefa"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Nom Enseignant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="197" y="0" width="138" height="30" backcolor="#E8E6E6" uuid="856500a2-1732-4d35-8310-b3951330026c"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Cour dispensé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="335" y="0" width="138" height="30" backcolor="#E8E6E6" uuid="7afae826-6e59-4f52-8346-bc166ec98549"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Fonction / Enseignant]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="59" y="0" width="138" height="30" uuid="aafa3356-6ee1-4d2f-bf5c-6dad059ce75e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomEns}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="0" width="138" height="30" uuid="26130cb8-65b9-4f29-81a9-38170df93e5e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cours}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="0" width="138" height="30" uuid="738332a2-a7cf-44ce-84cc-c0d533be4577"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cat_user}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

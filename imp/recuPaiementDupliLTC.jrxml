@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recuPaiement4" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="efa13fe1-d62a-4a0a-b70f-69aa3ea709c1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GestEcole"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="PidRecette" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+	heritier.recettes.id_recette,
+	 heritier.recettes.cls_nom,
+	 heritier.recettes.Montant,
+	 heritier.recettes.reste_a_paye,
+	heritier.recettes.`Nom_Elv`,
+	heritier.recettes.id_elv,
+	heritier.recettes.`Date`,
+	heritier.recettes.anne_scolaire,
+	heritier.recettes.`Libelle`,
+	heritier.recettes.Montant_cls_ins  
+FROM heritier.recettes
+WHERE 
+	 heritier.recettes.id_recette  = $P{PidRecette}]]>
+	</queryString>
+	<field name="Montant" class="java.lang.Double"/>
+	<field name="reste_a_paye" class="java.lang.Double"/>
+	<field name="id_recette" class="java.lang.Integer"/>
+	<field name="id_elv" class="java.lang.Integer"/>
+	<field name="anne_scolaire" class="java.lang.String"/>
+	<field name="Libelle" class="java.lang.String"/>
+	<field name="nom_Elv" class="java.lang.String"/>
+	<field name="Date" class="java.lang.String"/>
+	<field name="cls_nom" class="java.lang.String"/>
+	<field name="Montant_cls_ins" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="538" splitType="Stretch">
+			<frame>
+				<reportElement x="1" y="22" width="379" height="248" uuid="1259ae22-45a9-4e6f-adf2-2c0c9262b9b9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="122" y="92" width="88" height="18" uuid="27b481eb-8ce3-45f3-a907-e2c4912b91be"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Réçu Paiement :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="10" y="6" width="39" height="212" forecolor="#CFCFCF" uuid="939974f0-7f2d-46a8-88fe-556ed1bd8c9d"/>
+					<textElement textAlignment="Center" rotation="Left">
+						<font size="20" isBold="false" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[DUPLICATA]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="210" y="94" width="59" height="17" uuid="b0a34ae5-c6a6-449b-b3f8-5cbc9c4fc00a"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anne_scolaire}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="110" y="71" width="131" height="22" uuid="867f629b-8bde-4347-843d-d649fb8ca307"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Volet Parent]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="87" y="92" width="35" height="17" uuid="2a8353b9-b270-4dda-ae32-4e38dbef82fb"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id_recette}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="71" y="91" width="21" height="18" uuid="4a107105-f070-46ee-9abf-19c3a3c11fa0"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[N° :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="26" y="110" width="78" height="21" uuid="a478e45d-4d2b-44bd-b768-0801b95193c8"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Classe :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="10" y="219" width="256" height="15" backcolor="#F0EDED" uuid="aa24905f-b2d9-422a-8414-d65934818282"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LA SOMME VERSEE NE SERA PLUS RETOURNE QUELQUE SOIT LE MOTIF.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="10" y="234" width="256" height="12" backcolor="#F0EDED" uuid="05da9754-dbc0-4baf-a0fc-f2a3925fa66b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[L'excellence au service de la Performance]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="231" y="108" width="89" height="20" uuid="85af9d7e-0268-4688-a3ea-124f52d20ed6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id_elv}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="169" y="108" width="85" height="21" uuid="2878f6af-9985-4f8d-a256-28d7acb0e82d"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[N° Elève :]]></text>
+				</staticText>
+				<image>
+					<reportElement x="156" y="11" width="86" height="56" uuid="2009c369-7ae0-45d4-81a6-cec9a5098a03"/>
+					<imageExpression><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="194" y="138" width="81" height="23" uuid="0b25b2b6-13c7-4062-8ab8-b4f314ca459e"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Versement]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="194" y="161" width="81" height="26" uuid="55b42eff-48e6-4b8a-a6e0-e8cfc68b7d95"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Montant}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="275" y="161" width="90" height="26" uuid="4aacab03-39e8-4e05-961a-d89ef28403cc"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{reste_a_paye}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="275" y="138" width="90" height="23" uuid="7cdb22e8-6f87-40c2-beda-6a49de55776b"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reste]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="317" y="72" width="62" height="22" uuid="96d987bf-145f-4779-b05b-ca7b3a457c6a"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Montant_cls_ins}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="241" y="71" width="86" height="22" uuid="34cd550c-b5f1-406c-a890-3e7d9a73b0fb"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" isItalic="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Montant Total:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="275" y="187" width="90" height="59" uuid="d5f5b09c-f2af-4aff-9dce-221311e39801"/>
+					<box>
+						<pen lineWidth="1.0" lineStyle="Dotted"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Visa Intendant]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="52" width="147" height="22" uuid="d2639197-ab55-4f8d-ae4c-24c9e74e22c3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Lycée-Collège-Primaire]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="6" width="146" height="22" uuid="42f88a0b-5baf-4a4f-bf0b-f2ad89c52902"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Complexe Scolaire "Zimba"]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="29" width="147" height="22" uuid="f5182c77-63bf-405b-9f75-b31319f33d1f"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Discipline-Travail-Réussite]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="247" y="22" width="131" height="22" uuid="f45e0234-5931-4e0b-ae71-c8cda6921c14"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Tel : 66475539 / 60304302]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="247" y="1" width="131" height="22" uuid="92838b6a-9dc0-439a-a1ec-c9d821799d60"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[BP :____]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="262" y="45" width="58" height="22" uuid="82595dad-a30f-40e4-bf30-446db6d5006b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Versé le :]]></text>
+				</staticText>
+				<textField pattern="dd-MM-yyyy">
+					<reportElement x="310" y="45" width="67" height="22" uuid="ccc9ed5e-cf89-4d0f-96f0-4e6b07b05a3d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<staticText>
+				<reportElement x="11" y="160" width="104" height="23" uuid="427a49fe-9964-42b7-af50-5e481aee669e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom et Prenom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="160" width="80" height="23" uuid="43619db3-b219-4ebf-b2cd-19047dbc68fc"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Libelle]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="69" y="132" width="100" height="20" uuid="08b1675f-9e24-4dac-9206-fa36e87de624"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cls_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="115" y="183" width="80" height="26" uuid="3762d716-28a8-477d-a01c-82cc37745099"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Libelle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="183" width="104" height="26" uuid="68f9d0d3-bc94-4b72-b4f4-408d48a02c55"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom_Elv}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement x="-2" y="290" width="379" height="248" uuid="421b645f-a988-41ce-8737-cc26def37a45"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="10" y="6" width="39" height="212" forecolor="#CFCFCF" uuid="4267a17b-8146-4b2b-8ae4-08104e2c347b"/>
+					<textElement textAlignment="Center" rotation="Left">
+						<font size="20" isBold="false" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[DUPLICATA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="122" y="92" width="88" height="18" uuid="5fe599f2-c7b0-4e21-99a8-d0cf092f15e7"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="10" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Réçu Paiement :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="210" y="94" width="59" height="17" uuid="59588574-7807-4e46-909b-e5538dbdb14f"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anne_scolaire}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="110" y="71" width="131" height="22" uuid="98493926-a023-4475-86a7-dc14da1bc146"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Volet Administration]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="87" y="92" width="35" height="17" uuid="507da160-f9cf-49d6-9b90-febc611e998d"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id_recette}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="71" y="91" width="21" height="18" uuid="9d5b5773-c23a-4fca-b10c-ab27659234d2"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[N° :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="26" y="110" width="78" height="21" uuid="c5c9f3cb-5e7f-4c4d-8866-866b3a3832ee"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<text><![CDATA[Classe :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="231" y="108" width="89" height="20" uuid="a8e69671-33a6-44a7-96c6-27b316d69151"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{id_elv}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="169" y="108" width="85" height="21" uuid="fc365df4-eeac-43a1-9aed-0c68b5ba2112"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="12" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[N° Elève :]]></text>
+				</staticText>
+				<image>
+					<reportElement x="156" y="11" width="86" height="56" uuid="8da97613-f6da-4a5c-a7f2-d4b207933b2c"/>
+					<imageExpression><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="234" y="71" width="93" height="22" uuid="3b9ce9f2-88b7-47af-9ce3-004e915b76d6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" isItalic="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Montant Total :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="318" y="72" width="61" height="22" uuid="080a7a9a-b174-47b2-b5bd-cc6759ece616"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Montant_cls_ins}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="115" y="138" width="80" height="23" uuid="5b6e5d37-c8a8-4cad-8595-0506ce3eaae4"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Libelle]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="195" y="138" width="81" height="23" uuid="231002f5-97a6-47d1-b1d5-8eb74c8b184d"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Versement]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="276" y="138" width="90" height="23" uuid="571b9eb0-148f-4bd4-ad76-82bea9cb783c"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reste]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="276" y="161" width="90" height="26" uuid="f654bf00-3941-4f8d-a4a2-76d1aed7b8a3"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{reste_a_paye}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="195" y="161" width="81" height="26" uuid="be9356c6-6e50-4b48-894f-7adadd472f8c"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Montant}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="115" y="161" width="80" height="26" uuid="1a65d263-0ea6-49e8-871a-b828a2a5f5d6"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Libelle}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="11" y="161" width="104" height="26" uuid="f038fc0d-ce0a-4aa9-900d-1715be66fe03"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nom_Elv}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="11" y="138" width="104" height="23" uuid="1ba26125-cced-4f93-b4c9-847a53cbca96"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nom et Prenom]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="10" y="219" width="256" height="15" backcolor="#F0EDED" uuid="ca4365af-6959-4799-b085-5ceafea261ee"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LA SOMME VERSEE NE SERA PLUS RETOURNE QUELQUE SOIT LE MOTIF.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="10" y="234" width="256" height="12" backcolor="#F0EDED" uuid="790dc60f-b43b-4d7c-9357-85db3d9070a4"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="6" isBold="true"/>
+					</textElement>
+					<text><![CDATA[L'excellence au service de la Performance]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="276" y="187" width="90" height="59" uuid="729e4cbf-9592-48bb-a9f3-d62ef022f999"/>
+					<box>
+						<pen lineWidth="1.0" lineStyle="Dotted"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[Visa Intendant]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="52" width="147" height="22" uuid="26a53e6e-b9ad-44a7-a583-5d08c78c2e69"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Lycée-Collège-Primaire]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="6" width="146" height="22" uuid="e81255a1-70d0-4dd4-b4c0-46b7d248ab26"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Complexe Scolaire "Zimba"]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="29" width="147" height="22" uuid="36f8eaa0-6a4d-4343-8c91-dd5634d49657"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Discipline-Travail-Réussite]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="247" y="22" width="131" height="22" uuid="83584e37-ecb8-4aea-9313-628e477523ad"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Tel : 66475539 / 60304302]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="247" y="1" width="131" height="22" uuid="a0dd36a1-b426-41fd-9660-73f0acd98cde"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[BP :____]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="262" y="45" width="58" height="22" uuid="dd2b693a-52ae-4631-bbd9-b1fabcd7f91b"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Versé le :]]></text>
+				</staticText>
+				<textField pattern="dd-MM-yyyy">
+					<reportElement x="310" y="45" width="67" height="22" uuid="86d38082-4b1a-4803-a396-948f215d45d9"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+			<textField>
+				<reportElement x="66" y="400" width="100" height="20" uuid="464eebc1-2d39-4eea-aa23-759b3e223f6a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cls_nom}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

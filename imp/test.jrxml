@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 4.0.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="test" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="test"/>
+	<queryString language="SQL">
+		<![CDATA[select * from  heritier.eleve ]]>
+	</queryString>
+	<field name="elv_id" class="java.lang.Long"/>
+	<field name="elv_nom" class="java.lang.String"/>
+	<field name="elv_prenom" class="java.lang.String"/>
+	<field name="sexe" class="java.lang.String"/>
+	<field name="Date_de_naissance" class="java.lang.String"/>
+	<field name="Lieu_de_naissance" class="java.lang.String"/>
+	<field name="Nom_du_pere" class="java.lang.String"/>
+	<field name="Nom_de_la_mere" class="java.lang.String"/>
+	<field name="Quartier" class="java.lang.String"/>
+	<field name="Adresse" class="java.lang.String"/>
+	<field name="image" class="java.lang.Object"/>
+	<field name="nomEtprenom" class="java.lang.String"/>
+	<field name="elv_cls" class="java.lang.String"/>
+	<field name="anne_scolaire" class="java.lang.String"/>
+	<field name="cat_eleve" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

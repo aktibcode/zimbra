@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 4.0.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bilanInscription" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Gsbd"/>
+	<parameter name="anSco" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT heritier.inscription.nom_prenom,
+	SUM( heritier.inscription.`Montant_Versé`) AS Montant_Versé,
+	MIN( heritier.inscription.`Reste_à_Versé`) AS Reste,
+	heritier.inscription.nom_cls,
+	heritier.inscription.`Année_Scolaire`,
+	heritier.classe.`Montant_cls`,
+	heritier.inscription.id_recu,
+	heritier.inscription.nom_cls,
+	heritier.inscription.nom_prenom,
+	heritier.inscription.elv_id,
+	heritier.inscription.`Date_Versement`,
+	heritier.inscription.`Année_Scolaire`,
+	heritier.classe.cls_nom,
+	heritier.classe.`Montant_cls`,
+	heritier.classe.coef_classe
+FROM heritier.inscription
+	INNER JOIN heritier.classe ON 
+	 heritier.inscription.nom_cls = heritier.classe.cls_nom 
+WHERE 
+	 heritier.inscription.`Année_Scolaire` = $P{anSco} 
+GROUP BY heritier.inscription.nom_prenom
+]]>
+	</queryString>
+	<field name="nom_prenom" class="java.lang.String"/>
+	<field name="Montant_Versé" class="java.lang.Double"/>
+	<field name="Reste" class="java.lang.Double"/>
+	<field name="nom_cls" class="java.lang.String"/>
+	<field name="Année_Scolaire" class="java.lang.String"/>
+	<field name="Montant_cls" class="java.lang.Double"/>
+	<field name="elv_id" class="java.lang.Integer"/>
+	<variable name="sumMV" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Montant_Versé}]]></variableExpression>
+	</variable>
+	<variable name="minR" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Reste}]]></variableExpression>
+	</variable>
+	<variable name="scoTo" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Montant_cls}]]></variableExpression>
+	</variable>
+	<variable name="nBre" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{elv_id}]]></variableExpression>
+	</variable>
+	<group name="nom_prenom">
+		<groupExpression><![CDATA[$F{nom_prenom}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="41" width="237" height="19"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Département du Logone Occidentale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="21" width="237" height="19"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ministère de l'Enseignement Sécondaire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="237" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Republique Du Tchad]]></text>
+			</staticText>
+			<image>
+				<reportElement x="239" y="1" width="76" height="59"/>
+				<imageExpression class="java.lang.String"><![CDATA["D:/GETIONECOLE/img/Complexe Heritier.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="316" y="0" width="237" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Complexe Scolaire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="21" width="237" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LES HERITIERS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="41" width="237" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Moundou]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="193" y="1" width="170" height="28"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BILAN Inscription]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="461" y="1" width="92" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Année_Scolaire}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="377" y="1" width="83" height="30" backcolor="#EDE8E8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Année]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="70" y="1" width="123" height="40" backcolor="#EBC8C7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom de L'Elève]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="193" y="1" width="92" height="40" backcolor="#EBC8C7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Montant Versé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="285" y="1" width="92" height="40" backcolor="#EBC8C7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reste]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="377" y="1" width="83" height="40" backcolor="#EBC8C7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Classe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="460" y="1" width="93" height="40" backcolor="#EBC8C7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Scolarité]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="70" height="40" backcolor="#EBC8C7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[elv_id]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="-1" width="123" height="30" backcolor="#EDE8E8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nom_prenom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="193" y="-1" width="92" height="30" backcolor="#EDE8E8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Montant_Versé}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="-1" width="92" height="30" backcolor="#EDE8E8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Reste}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="377" y="-1" width="83" height="30" backcolor="#EDE8E8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nom_cls}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="-1" width="93" height="30" backcolor="#EDE8E8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Montant_cls}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="-1" width="70" height="30" backcolor="#EDE8E8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{elv_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="30">
+			<textField>
+				<reportElement mode="Opaque" x="193" y="0" width="92" height="30" backcolor="#E0CDCC"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$V{sumMV}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="285" y="0" width="92" height="30" backcolor="#E0CDCC"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$V{minR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="461" y="0" width="92" height="30" backcolor="#E0CDCC"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$V{scoTo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="73" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$V{nBre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Nbre Eleve Inscris]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

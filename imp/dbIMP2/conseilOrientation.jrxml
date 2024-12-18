@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="conseilOrientation" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="773cdae6-3891-4c2f-84db-18f91a1c1468">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="pAn" class="java.lang.String"/>
+	<parameter name="pCls" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT `Num`, `nomEtprenom`, `M1`, `M2`, `M3` , (M1+M2+M3) /3 as MO,  `anne_scolaire`, Classe, rang1, rang2, rang3
+ FROM `stockage1` 
+ WHERE `Classe` = $P{pCls}   and `anne_scolaire`=  $P{pAn} 
+  order by MO desc]]>
+	</queryString>
+	<field name="Num" class="java.lang.Integer"/>
+	<field name="nomEtprenom" class="java.lang.String"/>
+	<field name="M1" class="java.lang.Double"/>
+	<field name="M2" class="java.lang.Double"/>
+	<field name="M3" class="java.lang.Double"/>
+	<field name="anne_scolaire" class="java.lang.String"/>
+	<field name="Classe" class="java.lang.String"/>
+	<field name="MO" class="java.lang.Double"/>
+	<field name="rang1" class="java.lang.Integer"/>
+	<field name="rang2" class="java.lang.Integer"/>
+	<field name="rang3" class="java.lang.Integer"/>
+	<variable name="MO_S" class="java.lang.Integer" incrementType="Report" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{MO}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="270" height="19" uuid="4f198c82-8e9a-490e-9a1f-784aaf06ad74"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Complexe Scolaire Privé "LES HERITIERS"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="20" width="237" height="19" uuid="164adac7-982d-4f44-ab26-84277c600e10"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Education-Responsabilité-Avénir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="32" width="300" height="30" uuid="b1c42568-2139-43d4-b7b7-80b8566ff7af"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Conseil d'Orientation]]></text>
+			</staticText>
+			<image>
+				<reportElement x="700" y="0" width="102" height="62" uuid="b5c7f4ab-231e-44ed-8603-b75fd2b3e770"/>
+				<imageExpression><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="100" height="30" backcolor="#BFB0B0" uuid="d2f56f9e-0b2b-49af-9d9c-35f5ca996c9a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Classe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="700" y="0" width="100" height="30" backcolor="#BFB0B0" uuid="aa0ddabd-fd68-43d4-85f6-ad8f92dc08ac"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anne_scolaire}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="250" height="30" backcolor="#FCCDCC" uuid="a1d5be45-2718-4fae-9822-adae106d20f0"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom et Prenom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="250" y="0" width="55" height="30" backcolor="#FCCDCC" uuid="a530672f-e3eb-466c-973f-79d0c6460641"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[M. 1Trim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="360" y="0" width="55" height="30" backcolor="#FCCDCC" uuid="fc4e26ab-da64-4d9a-98b0-21c268c36f5e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[M. 2Trim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="470" y="0" width="55" height="30" backcolor="#FCCDCC" uuid="26a048cd-d848-4258-8527-826f34966501"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[M. 3Trim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="580" y="0" width="55" height="30" backcolor="#FCCDCC" uuid="1ef6a281-838e-4466-b5af-aba141aba581">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[M. An.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="690" y="0" width="110" height="30" backcolor="#FCCDCC" uuid="75ec5085-beff-4e45-bfc4-1098e2f97d32">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Observations]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="305" y="0" width="55" height="30" backcolor="#FCCDCC" uuid="a477cab9-3ffa-4def-b9c2-d0d578b462e6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rg 1Trim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="415" y="0" width="55" height="30" backcolor="#FCCDCC" uuid="219d152d-40af-4c27-8dd3-44bc2186cacd"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rg 2Trim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="525" y="0" width="55" height="30" backcolor="#FCCDCC" uuid="20633f0e-7250-4004-be09-be8a8c0d033a"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rg 3Trim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="635" y="0" width="55" height="30" backcolor="#FCCDCC" uuid="f5b0de9d-5285-4e46-ac57-5f82de801d62">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rg. An.]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="250" height="20" uuid="f055f324-f1aa-426a-8fd6-cc312b7258e6"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nomEtprenom}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="250" y="0" width="55" height="20" uuid="105dc46e-3d72-49f9-be26-119d01f8587a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{M1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="360" y="0" width="55" height="20" uuid="b681bd08-dbb3-4f84-bd9e-234e1dca165f">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{M2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="470" y="0" width="55" height="20" uuid="97009b94-fd2a-4de4-8ec6-79c21e5c0763"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{M3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="580" y="0" width="55" height="20" uuid="59bbb48b-cc3a-4d71-9c85-18a21888773d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="690" y="0" width="110" height="20" uuid="005ed86a-a3f7-4c28-af9b-48e7d75e3892"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="">
+				<reportElement x="305" y="0" width="55" height="20" uuid="60a24bb4-9c9b-4e3e-9528-f932f28ac1db"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rang1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="415" y="0" width="55" height="20" uuid="e5816afb-2b05-46e7-b4cc-73be6638ea2d">
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rang2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="525" y="0" width="55" height="20" uuid="775f912e-ff78-40b9-99d2-d8319d2f0fb7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rang3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="635" y="0" width="55" height="20" uuid="2f957955-e0ff-4237-a06b-aacc71d19dbd"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{MO_S}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="181">
+			<staticText>
+				<reportElement x="560" y="160" width="221" height="20" uuid="f4d19065-d84e-4c7e-8cb5-482d116e5003"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Le Conseil.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="561" y="97" width="221" height="20" uuid="fd694e68-bcbc-4eda-b315-ede43f1e7c5a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fait à Moundou le ...../...../........]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

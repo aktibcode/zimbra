@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pv" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72d2f6c9-531c-4111-928a-429af93c16f2">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="herDB"/>
+	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Data" uuid="d3ebe4f1-fcf6-4792-ae5b-98b736f59ee3">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="herDB"/>
+		<parameter name="ParaAn" class="java.lang.String"/>
+		<parameter name="ParaCla" class="java.lang.String"/>
+		<parameter name="efA1" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[select COUNT(MOY) as EFFECTIF from heritier.moyeleve
+where MOY >= 10 and Annee = $P{ParaAn}  and Classe =  $P{ParaCla}]]>
+		</queryString>
+		<field name="EFFECTIF" class="java.lang.Integer"/>
+		<variable name="effectif" class="java.lang.Integer" calculation="Count"/>
+	</subDataset>
+	<subDataset name="DataEchoue" uuid="ff11d05c-9bf2-4f21-9a95-5139761ae1a5">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="herDB"/>
+		<parameter name="ParAn" class="java.lang.String"/>
+		<parameter name="ParCl" class="java.lang.String"/>
+		<parameter name="ef1" class="java.lang.Integer"/>
+		<queryString language="SQL">
+			<![CDATA[select count(MOY) as Echoue 
+from heritier.moyeleve
+where MOY < 10 and Classe = $P{ParCl}  and Annee =  $P{ParAn}]]>
+		</queryString>
+		<field name="Echoue" class="java.lang.Integer"/>
+		<variable name="effectif1" class="java.lang.Integer" calculation="Count"/>
+		<variable name="Pour" class="java.lang.Integer"/>
+	</subDataset>
+	<parameter name="An" class="java.lang.String"/>
+	<parameter name="Cla" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM heritier.moyeleve
+where Classe =  $P{Cla}  and Annee =  $P{An} 
+order by MOY desc]]>
+	</queryString>
+	<field name="Nom" class="java.lang.String"/>
+	<field name="Classe" class="java.lang.String"/>
+	<field name="Num" class="java.lang.Long"/>
+	<field name="Semestre" class="java.lang.String"/>
+	<field name="MOY" class="java.math.BigDecimal"/>
+	<field name="Annee" class="java.lang.String"/>
+	<variable name="Total" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{MOY}]]></variableExpression>
+	</variable>
+	<variable name="Admis" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="94" splitType="Stretch">
+			<frame>
+				<reportElement x="2" y="2" width="553" height="92" uuid="47cfed7a-a417-427b-a3a5-59eaa5df9096"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<image>
+					<reportElement x="245" y="4" width="63" height="56" uuid="11d3a433-7e77-485a-93da-9d5cbce3d2ef">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<imageExpression><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement x="110" y="62" width="288" height="30" uuid="783de075-72af-4d2d-97f3-39a24f3566ef">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="19" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PROCES VERBAL]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="399" y="64" width="153" height="27" uuid="7cdff1af-09ec-49ad-8a0b-6153c0d851c3"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Classe : "+ $F{Classe}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="9" y="46" width="216" height="33" uuid="bec25d36-3d65-428e-8225-9a5acb909457"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Nationale et de la Promotion civique du Mandoul]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="32" width="216" height="22" uuid="09ed18a4-0c64-43c3-a7dc-7fb8bf3c29ec"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Inspection Départementale de l'Education]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="16" y="13" width="187" height="29" uuid="606592f2-c02e-4f53-8d40-9e91aecfb590"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="10" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Délégation Proviciale de l'Education Nationale]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="5" y="0" width="216" height="20" uuid="025ece34-d7a7-4015-83f8-31b6b09b9942"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Republique du Tchad  ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="314" y="22" width="237" height="19" uuid="4fc80c80-9ce0-479e-9cb3-fe31b86b2c10">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[UNITE - TRAVAIL - PROGRES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="281" y="3" width="270" height="19" uuid="6ac3f23c-5781-4a7f-9d06-174cdd7b2dfd">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REPUBLIQUE DU TCHAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="411" y="32" width="131" height="22" uuid="7501cea2-77f8-4ebd-b4bd-8d8c5aea1a08"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[BP :____]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="409" y="46" width="131" height="22" uuid="5b5b4d5f-bb08-445f-b383-9f5939d1b618"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Tel : 66475539 / 60304302]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="70" y="0" width="410" height="20" backcolor="#F78393" uuid="328df591-608a-4ae2-8e51-4a786690d1a9"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom et Prenom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="69" height="20" backcolor="#F78393" uuid="8cb150ff-af94-47e3-968b-4d3713aaf7f3"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Num]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="480" y="0" width="75" height="20" backcolor="#F78393" uuid="4de7c18c-aeec-4cd2-9308-022e842c3430"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MOY]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="70" y="1" width="410" height="25" uuid="2a338389-2789-4bb4-9057-882d819175c8"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="1" width="69" height="25" uuid="392c0bef-1d69-42f2-a183-60d78e8e9007">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Num}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,#0.###;(#,#0.###)">
+				<reportElement x="480" y="1" width="75" height="25" uuid="276a9e00-5a98-4a51-bd27-968840fca500"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MOY}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="22">
+			<textField>
+				<reportElement x="423" y="1" width="65" height="21" uuid="309cc014-aa36-41c4-bef9-07be821fdffc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="488" y="1" width="65" height="21" uuid="b6176131-52c3-4190-ba8f-af96b03c936a"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["/" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="230">
+			<textField>
+				<reportElement x="0" y="32" width="69" height="29" uuid="8079d3c5-4dbc-402d-ac5d-f7d9c68ed295"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="1" width="69" height="31" backcolor="#BFE1FF" uuid="5806aa0f-df8e-434e-9d8c-7be96c2db1fc"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Effectif]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement x="69" y="1" width="242" height="31" uuid="f5b6120b-17a6-46b8-85c1-b956152f34fb">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Data" uuid="d56370ba-1107-4be7-9155-ff1b16ea5312">
+						<datasetParameter name="ParaAn">
+							<datasetParameterExpression><![CDATA[$F{Annee}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ParaCla">
+							<datasetParameterExpression><![CDATA[$F{Classe}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="efA1">
+							<datasetParameterExpression><![CDATA[$V{Total}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+						<returnValue fromVariable="effectif" toVariable="Total"/>
+					</datasetRun>
+					<jr:column width="121" uuid="6139a4f3-6de5-4690-8c25-b2c174866f9c">
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="121" height="30" uuid="3e228c75-24a7-4d9e-b3a6-0746285b22db"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="16" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total Admis]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="121" height="30" uuid="475bebde-abf2-4218-8ddc-c1c48556d64a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{EFFECTIF}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="121" uuid="f17959ea-6c2b-4e83-95a0-71d41a0ba638">
+						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="121" height="30" uuid="e5d4fc6d-84b2-433b-ad22-253ce63f10ad"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="16" isBold="true"/>
+								</textElement>
+								<text><![CDATA[%]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table_TD" height="30">
+							<textField pattern="#,#0.0#;(#,#0.0#)">
+								<reportElement x="0" y="0" width="121" height="30" uuid="cd30675a-3f1b-4110-b0b6-166cc647b04c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{EFFECTIF}*100.0)/$P{efA1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement x="312" y="1" width="242" height="31" uuid="f03225d6-b095-45ad-83ae-5f661b1f3b37">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+					<property name="com.jaspersoft.studio.table.style.table_header" value="Table 1_TH"/>
+					<property name="com.jaspersoft.studio.table.style.column_header" value="Table 1_CH"/>
+					<property name="com.jaspersoft.studio.table.style.detail" value="Table 1_TD"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataEchoue" uuid="40e75196-58e2-4895-8aeb-56e8ad0a0874">
+						<datasetParameter name="ParAn">
+							<datasetParameterExpression><![CDATA[$F{Annee}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ParCl">
+							<datasetParameterExpression><![CDATA[$F{Classe}]]></datasetParameterExpression>
+						</datasetParameter>
+						<datasetParameter name="ef1">
+							<datasetParameterExpression><![CDATA[$V{Total}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="121" uuid="40f1cbe1-0edb-4807-9d09-52e86869a032">
+						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="121" height="30" uuid="6b421065-e3bf-4398-99cc-267cccf02ff3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="16" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Total Echoués]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField>
+								<reportElement x="0" y="0" width="121" height="30" uuid="cd962826-5ed8-4661-905f-d3e856dbbcfb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{Echoue}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="121" uuid="440c0d39-2692-4049-97ac-fe25d2014f3c">
+						<jr:columnHeader style="Table 1_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="121" height="30" uuid="62cd47d0-56cd-4d6d-919d-a31ffcfb34f3"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="16" isBold="true"/>
+								</textElement>
+								<text><![CDATA[%]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="Table 1_TD" height="30">
+							<textField pattern="#,##0.0#;(#,##0.0#)">
+								<reportElement x="0" y="0" width="121" height="30" uuid="36fc87f6-b10c-444d-8ab3-72bca8aed875"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{Echoue}*100.0)/$P{ef1}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="315" y="95" width="238" height="25" uuid="e72eaedd-e802-4a27-92bb-1cd893822a77"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Le PROVISEUR]]></text>
+			</staticText>
+			<frame>
+				<reportElement x="360" y="115" width="143" height="80" uuid="582c2511-cc48-4dab-b4cc-2fc6b32194ce"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dotted"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
+			<staticText>
+				<reportElement x="321" y="187" width="222" height="20" uuid="bd5483a7-6f78-4bf3-a8a3-46d700807f45"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Moundou le ........./....../............]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

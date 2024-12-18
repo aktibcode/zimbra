@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 4.0.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="recuPaiement" pageWidth="595" pageHeight="793" columnWidth="567" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="aGVyaXRpZXIuaW5zY3JpcHRpb24gLDE1LDE1LDJiYTI3ZjJlLTI5MTItNDA1Yi04ZWJiLWE2ZGI3&#xA;ZWEyY2Q2Mzs="/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Gsbd"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<parameter name="PidEleve" class="java.lang.Integer"/>
+	<parameter name="anSco" class="java.lang.String"/>
+	<parameter name="montantVerse" class="java.lang.Double"/>
+	<parameter name="reste" class="java.lang.Double"/>
+	<parameter name="numRec" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT sum( Montant_Versé) AS Versement,
+	Min( Reste_à_Versé) AS Reste,
+	heritier.inscription.id_recu,
+	heritier.inscription.nom_cls,
+	heritier.inscription.nom_prenom,
+	heritier.inscription.elv_id,
+	heritier.inscription.`Date_Versement`,
+	heritier.inscription.`Année_Scolaire`
+FROM heritier.inscription
+WHERE 
+	 heritier.inscription.elv_id = $P{PidEleve} 
+	 AND heritier.inscription.`Année_Scolaire` = $P{anSco}]]>
+	</queryString>
+	<field name="Versement" class="java.lang.Double"/>
+	<field name="Reste" class="java.lang.Double"/>
+	<field name="id_recu" class="java.lang.Integer"/>
+	<field name="nom_cls" class="java.lang.String"/>
+	<field name="nom_prenom" class="java.lang.String"/>
+	<field name="elv_id" class="java.lang.Integer"/>
+	<field name="Date_Versement" class="java.lang.String"/>
+	<field name="Année_Scolaire" class="java.lang.String"/>
+	<group name="nom_prenom">
+		<groupExpression><![CDATA[$F{nom_prenom}]]></groupExpression>
+	</group>
+	<group name="id_recu">
+		<groupExpression><![CDATA[$F{id_recu}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="724" splitType="Stretch">
+			<frame>
+				<reportElement x="-1" y="52" width="561" height="268"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="149" y="112" width="241" height="31"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="14" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Réçu Paiement :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="258" y="113" width="136" height="30"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Année_Scolaire}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="7" y="8" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Republique du Tchad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="31" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Unité-Travail-Progres]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="54" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Enseignement Secondaire]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="8" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="30" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[BP : 454]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="51" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Tel : 45 67 55 55]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="202" y="72" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Volet Parent]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="82" y="112" width="67" height="30"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{numRec}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="51" y="111" width="51" height="31"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[N° :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="138" y="146" width="78" height="31"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Classe :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="3" y="242" width="555" height="21" backcolor="#F0EDED"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[FORMONS UN EXCELLENT HOMME POUR DEMAIN. QUALITE RESPONSABILITE ET LOYAUTE  !!!]]></text>
+				</staticText>
+				<image>
+					<reportElement x="230" y="9" width="86" height="56"/>
+					<imageExpression class="java.lang.String"><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+				</image>
+			</frame>
+			<frame>
+				<reportElement x="3" y="422" width="561" height="266"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="7" y="8" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Republique du Tchad]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="31" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Unité-Travail-Progres]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="7" y="54" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Enseignement Secondaire]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="8" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="31" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[BP : 454]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="54" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Tel : 45 67 55 55]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="202" y="72" width="131" height="22"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Volet Administration]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="2" y="206" width="138" height="30"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nom_prenom}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="2" y="175" width="138" height="30"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nom et Prenom]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="140" y="175" width="141" height="30"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Versement]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="140" y="206" width="141" height="30"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{montantVerse}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="281" y="206" width="138" height="30"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{reste}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="281" y="175" width="138" height="30"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Reste]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="419" y="175" width="138" height="30"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Date de Versement]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="419" y="206" width="138" height="30"/>
+					<box>
+						<pen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Date_Versement}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="182" y="144" width="100" height="30"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nom_cls}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="258" y="112" width="136" height="30"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{Année_Scolaire}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="149" y="111" width="241" height="31"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="14" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[Réçu Paiement :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="82" y="111" width="67" height="30"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$P{numRec}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="51" y="110" width="51" height="31"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[N° :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="137" y="143" width="77" height="31"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14"/>
+					</textElement>
+					<text><![CDATA[Classe :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="2" y="241" width="555" height="21" backcolor="#F0EDED"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle"/>
+					<text><![CDATA[FORMONS UN EXCELLENT HOMME POUR DEMAIN. QUALITE RESPONSABILITE ET LOYAUTE  !!!]]></text>
+				</staticText>
+				<image>
+					<reportElement x="230" y="9" width="86" height="56"/>
+					<imageExpression class="java.lang.String"><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+				</image>
+			</frame>
+			<textField>
+				<reportElement x="182" y="199" width="100" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nom_cls}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="281" y="230" width="138" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reste]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="419" y="230" width="138" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date de Versement]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="419" y="260" width="138" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class=""><![CDATA[$F{Date_Versement}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="260" width="138" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{reste}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="260" width="141" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{montantVerse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="230" width="141" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Versement]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="230" width="138" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom et Prenom]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="260" width="138" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nom_prenom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="370" width="563" height="3"/>
+				<box>
+					<pen lineWidth="2.0" lineStyle="Dotted"/>
+				</box>
+				<text><![CDATA[Texte Statique]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

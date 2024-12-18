@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="91ff4978-e92f-4680-b65e-6c110f72585d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<parameter name="cls" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select  heritier.eleve.elv_id,
+ heritier.eleve.elv_nom,
+ heritier.eleve.elv_prenom,
+ heritier.eleve.elv_cls ,
+ heritier.eleve.cat_eleve 
+ from
+ eleve
+ where 
+  heritier.eleve.elv_cls =  $P{cls} 
+  order by  heritier.eleve.elv_nom]]>
+	</queryString>
+	<field name="elv_id" class="java.lang.Long"/>
+	<field name="elv_nom" class="java.lang.String"/>
+	<field name="elv_prenom" class="java.lang.String"/>
+	<field name="elv_cls" class="java.lang.String"/>
+	<field name="cat_eleve" class="java.lang.String"/>
+	<group name="elv_cls">
+		<groupExpression><![CDATA[$F{elv_cls}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="0" width="100" height="30" uuid="18de6187-75c6-4ebb-b276-cbf9b454056e"/>
+				<text><![CDATA[elv_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="0" width="100" height="30" uuid="dff9707c-e99d-4dcd-ab40-ec3e848b9a20"/>
+				<text><![CDATA[elv_nom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="0" width="100" height="30" uuid="7d6fcbf4-d66f-4f0d-9758-377adf35adf0"/>
+				<text><![CDATA[elv_prenom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="0" width="100" height="30" uuid="0949cd34-2432-4177-862e-901e9e50b025"/>
+				<text><![CDATA[elv_cls]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="0" width="100" height="30" uuid="14d2793b-d611-4fc0-ac5b-e9ec2bc668c9"/>
+				<text><![CDATA[cat_eleve]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="21" y="0" width="100" height="30" uuid="05ee3de2-6134-4b8b-a6e9-a426ca9fabd6"/>
+				<textFieldExpression><![CDATA[$F{elv_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="121" y="0" width="100" height="30" uuid="c16e0c40-0c68-444a-b9a8-82f726d32ad6"/>
+				<textFieldExpression><![CDATA[$F{elv_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="0" width="100" height="30" uuid="4092210f-9871-45cd-a8d4-2fb5c3ac6342"/>
+				<textFieldExpression><![CDATA[$F{elv_prenom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="0" width="100" height="30" uuid="0df33347-ce8d-4645-b36a-3d6fb54a1d65"/>
+				<textFieldExpression><![CDATA[$F{elv_cls}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="0" width="100" height="30" uuid="1ed9322a-7745-4097-9fe6-5184f2911b42"/>
+				<textFieldExpression><![CDATA[$F{cat_eleve}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

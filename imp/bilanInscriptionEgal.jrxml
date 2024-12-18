@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 4.0.2  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bilanInscriptionClasse" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="GestEcole"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="612"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="376"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="471"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="523"/>
+	<parameter name="anSco" class="java.lang.String"/>
+	<parameter name="pLibelle" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT heritier.recettes.id_recette,
+	heritier.recettes.anne_scolaire,
+	heritier.recettes.`Libelle`,
+	heritier.recettes.`Montant`,
+	heritier.recettes.reste_a_paye,
+	heritier.recettes.`Date`,
+	heritier.recettes.autres_libelles,
+	sum(`Montant`),
+	min(reste_a_paye),
+	heritier.recettes.cls_nom,
+	heritier.classe.cls_nom,
+	heritier.recettes.`Nom_Elv`,
+	heritier.recettes.`Montant_cls_ins`,
+	heritier.recettes.`Montant_cls_tenu`,
+	heritier.classe.`Montant_tenue`,
+	heritier.classe.`Montant_cls`,
+	heritier.recettes.id_elv
+FROM heritier.recettes
+		INNER JOIN heritier.classe ON 
+	 heritier.classe.cls_nom = heritier.recettes.cls_nom 
+
+WHERE 
+	 heritier.recettes.anne_scolaire = $P{anSco} 
+	 AND heritier.recettes.`Libelle` = $P{pLibelle} 
+GROUP BY heritier.recettes.id_elv
+having sum(`Montant`)=`Montant_cls_ins`
+ORDER BY heritier.recettes.cls_nom]]>
+	</queryString>
+	<field name="id_recette" class="java.lang.Integer"/>
+	<field name="anne_scolaire" class="java.lang.String"/>
+	<field name="Nom_Elv" class="java.lang.String"/>
+	<field name="cls_nom" class="java.lang.String"/>
+	<field name="Libelle" class="java.lang.String"/>
+	<field name="Montant" class="java.lang.Double"/>
+	<field name="reste_a_paye" class="java.lang.Double"/>
+	<field name="sum(`Montant`)" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="min(reste_a_paye)" class="java.lang.Double"/>
+	<field name="Montant_cls_ins" class="java.lang.Double"/>
+	<field name="Montant_cls_tenu" class="java.lang.Double"/>
+	<field name="Date" class="java.lang.String"/>
+	<field name="autres_libelles" class="java.lang.String"/>
+	<field name="Montant_cls" class="java.lang.Double"/>
+	<field name="Montant_tenue" class="java.lang.Double"/>
+	<field name="id_elv" class="java.lang.Integer"/>
+	<variable name="sumMV" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sum(`Montant`)}]]></variableExpression>
+	</variable>
+	<variable name="minR" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{min(reste_a_paye)}]]></variableExpression>
+	</variable>
+	<variable name="nBre" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{Nom_Elv}]]></variableExpression>
+	</variable>
+	<variable name="prv" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA["Frais Inscription".equals($F{Libelle})? $F{Montant_cls} : 
+"Frais des Tenues".equals($F{Libelle})  ? $F{Montant_tenue} : "Autres"]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="41" width="237" height="19"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Département du Logone Occidentale]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="21" width="237" height="19"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ministère de l'Enseignement Sécondaire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="0" width="237" height="20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Republique Du Tchad]]></text>
+			</staticText>
+			<image>
+				<reportElement x="239" y="1" width="76" height="59"/>
+				<imageExpression class="java.lang.String"><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="316" y="21" width="237" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LES HERITIERS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="0" width="237" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Complexe Scolaire]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="41" width="237" height="19"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Moundou]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="396" y="0" width="63" height="30" backcolor="#EDE8E8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Année]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="459" y="0" width="93" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{anne_scolaire}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="1" y="1" width="106" height="29" backcolor="#F2E4E4"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$F{Libelle}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="0" width="39" height="30" backcolor="#F2E4E4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N °]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="40" y="0" width="148" height="30" backcolor="#F2E4E4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom Prenom]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="188" y="0" width="107" height="30" backcolor="#F2E4E4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Montant Versé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="295" y="0" width="101" height="30" backcolor="#F2E4E4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reste à Versé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="396" y="0" width="63" height="30" backcolor="#F2E4E4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Classe]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="459" y="0" width="93" height="30" backcolor="#F2E4E4"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Montant Prevu]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="1" width="148" height="19"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{Nom_Elv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="1" width="107" height="19"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{sum(`Montant`)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="295" y="1" width="101" height="19"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{min(reste_a_paye)}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="1" width="93" height="19"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA["Frais Inscription".equals($F{Libelle})? $F{Montant_cls} : 
+"Frais des Tenues".equals($F{Libelle})  ? $F{Montant_tenue} : "Autres"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="1" width="39" height="19"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$F{id_elv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="1" width="63" height="19"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{cls_nom}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="59">
+			<staticText>
+				<reportElement key="" x="2" y="29" width="150" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Nbre d'eleve ayant payé]]></text>
+			</staticText>
+			<textField>
+				<reportElement key="" x="153" y="29" width="57" height="30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$V{nBre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" mode="Opaque" x="210" y="28" width="95" height="31" backcolor="#F0D3D3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$V{sumMV}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" mode="Opaque" x="305" y="28" width="91" height="31" backcolor="#F0D3D3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$V{minR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement key="" mode="Opaque" x="396" y="28" width="103" height="31" backcolor="#F0D3D3"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class=""><![CDATA[$V{prv}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="" mode="Opaque" x="210" y="0" width="289" height="28" backcolor="#BFB0AE"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

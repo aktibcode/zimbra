@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.18.1.final using JasperReports Library version 6.18.1-9d75d1969e774d4f179fb3be8401e98a0e6d1611  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ficheInscription" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ec74929c-6754-41ec-8a63-1919534e9ebe">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="inscription"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="net.sf.jasperreports.print.create.bookmarks" value="false"/>
+	<parameter name="pClas" class="java.lang.String"/>
+	<parameter name="pIdElv" class="java.lang.Integer"/>
+	<queryString language="SQL">
+		<![CDATA[select  heritier.eleve.elv_id,
+ heritier.eleve.elv_nom,
+ heritier.eleve.elv_prenom,
+ heritier.eleve.sexe  ,
+ heritier.eleve.`Date_de_naissance`  ,
+ heritier.eleve.`Lieu_de_naissance`  ,
+ heritier.eleve.`Nom_du_pere` ,
+ heritier.eleve.`Nom_de_la_mere` ,
+ heritier.eleve.`Quartier`  ,
+ heritier.eleve.`Adresse`  ,
+ heritier.eleve.image  ,
+ heritier.eleve.`nomEtprenom`  ,
+ heritier.eleve.elv_cls  ,
+  heritier.eleve.anne_scolaire ,
+ heritier.eleve.cat_eleve 
+ 
+ From eleve
+ 
+ WHERE   heritier.eleve.elv_cls  =  $P{pClas}  and  heritier.eleve.elv_id  = $P{pIdElv}]]>
+	</queryString>
+	<field name="elv_id" class="java.lang.Integer"/>
+	<field name="elv_nom" class="java.lang.String"/>
+	<field name="elv_prenom" class="java.lang.String"/>
+	<field name="sexe" class="java.lang.String"/>
+	<field name="Date_de_naissance" class="java.lang.String"/>
+	<field name="Lieu_de_naissance" class="java.lang.String"/>
+	<field name="Nom_du_pere" class="java.lang.String"/>
+	<field name="Nom_de_la_mere" class="java.lang.String"/>
+	<field name="Quartier" class="java.lang.String"/>
+	<field name="Adresse" class="java.lang.String"/>
+	<field name="image" class="java.lang.Object"/>
+	<field name="nomEtprenom" class="java.lang.String"/>
+	<field name="elv_cls" class="java.lang.String"/>
+	<field name="anne_scolaire" class="java.lang.String"/>
+	<field name="cat_eleve" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="161" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="10" width="553" height="151" uuid="c7078505-6e23-458a-960c-890d594bbf24"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textField>
+					<reportElement x="340" y="80" width="86" height="28" uuid="b9d23ded-613c-42ee-bddc-185e4ac8a154"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{elv_cls}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="441" y="121" width="111" height="30" uuid="6147618f-373c-493b-9a8a-154fa81945d6"/>
+					<box>
+						<bottomPen lineWidth="1.0"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{anne_scolaire}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Opaque" x="280" y="121" width="161" height="30" backcolor="#FABFBE" uuid="4586a3d1-58d7-40ba-9c0a-63deff9a0db2"/>
+					<box>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[ANNE SCOLAIRE : ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="52" width="206" height="28" uuid="34c8617e-4681-4812-a62f-81f63c3506bd"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Lycée-Collège-Primaire]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="29" width="206" height="28" uuid="42b75b96-8eee-46c1-85b5-5b1487717e45"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Discipline-Travail-Réussite]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="6" width="205" height="28" uuid="59a9ded7-28e6-4cbc-b173-eb4e8ce6b8d5"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Complexe Scolaire "Zimba"]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement x="110" y="90" width="250" height="30" uuid="48b93ee2-2983-4192-b2e5-1564e752ed0c">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="2.0" lineStyle="Double"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="19" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHE INSCRIPTION : ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="465" y="19" width="86" height="56" uuid="94c7c147-db0f-454d-9ac2-d36202334dec">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<imageExpression><![CDATA["./img/Complexe Heritier.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="268" splitType="Stretch">
+			<textField>
+				<reportElement x="69" y="34" width="111" height="30" uuid="24072656-bb56-4394-be85-1adfd2c07256"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{elv_nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="291" y="34" width="111" height="30" uuid="f3a0dbfb-8217-4e2f-b241-b7099146828b"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{elv_prenom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="210" width="80" height="30" uuid="d6f9b966-c40f-4797-b66d-acd736a63acc"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="120" width="121" height="30" uuid="0bee9d4b-f6c1-41b1-8f40-33cd0228526b"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Date_de_naissance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="119" width="124" height="30" uuid="e96b8631-fab5-4e6e-8d48-d18ba841f20e"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Lieu_de_naissance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="-1" y="34" width="70" height="30" backcolor="#FABFBE" uuid="5ac699bc-bc10-4b47-a4e0-7970e3ca1d0a"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOM : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="-1" y="119" width="151" height="30" backcolor="#FABFBE" uuid="b8345bb7-3a4d-480d-a833-59dcae779287"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date de Naissance : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="202" y="34" width="89" height="30" backcolor="#FABFBE" uuid="afb22950-1f7c-43ae-9b2d-bbe8db59e438"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRENOM : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="280" y="119" width="146" height="30" backcolor="#FABFBE" uuid="c08a9864-3a2b-4818-9475-277e16db3ed6"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Lieu de Naissance : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="209" width="70" height="30" backcolor="#FABFBE" uuid="cb5ac2ab-77dc-4f7d-aa8d-67f5fdffcc43"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEXE : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="240" y="209" width="101" height="30" uuid="443be13a-965a-4b18-adec-6e6609704082"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Quartier}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="150" y="210" width="89" height="30" backcolor="#FABFBE" uuid="a2a33930-36f6-411a-b7a0-5d5211f4b8f7"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quartier : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="350" y="209" width="75" height="30" backcolor="#FABFBE" uuid="c86470cc-0c04-4ac8-8e22-e7d2d69dfa69"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Statut : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="426" y="209" width="124" height="30" uuid="70abf2ae-da1b-4ff6-952e-179323850875"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cat_eleve}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="420" y="9" width="131" height="101" uuid="916b166a-8b34-4d10-9167-367b04e5d080"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="442" y="44" width="87" height="30" uuid="b815b9d9-4f9e-4076-aea8-997b59a92ee4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PHOTO]]></text>
+			</staticText>
+		</band>
+		<band height="261">
+			<textField>
+				<reportElement x="90" y="230" width="138" height="30" uuid="ff90809f-bf67-4565-82d1-5022e72392b4"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Adresse}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="230" width="89" height="30" backcolor="#FABFBE" uuid="54ac68d9-bfcf-46b9-a83e-35cafadfd389"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Adresse : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="40" width="192" height="30" uuid="7358a3fb-4ab9-45fc-91e8-adbcb6d2a353"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nom_du_pere}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="130" width="192" height="30" uuid="eb2b3613-4af3-456f-8458-ecea90c191c4"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nom_de_la_mere}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="40" width="140" height="30" backcolor="#FABFBE" uuid="9db59fa3-86d4-4a2b-9694-959dd5915c4d"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom du Père : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="130" width="140" height="30" backcolor="#FABFBE" uuid="b89042cb-c0bd-4d40-ba02-6789be07c202"/>
+				<box>
+					<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nom de la Mère : ]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
